@@ -1,89 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Impulse Motion Model Deployment</title>
-        <script src="edge-impulse-standalone.js"></script>
-        <script src="run-impulse.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.3.0/dist/tf.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/knn-classifier@1.1.0/dist/knn-classifier.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet@2.0.4/dist/mobilenet.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/motion-detection@1.1.2/dist/motion-detection.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/handpose@0.9.3/dist/handpose.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/facemesh@0.14.0/dist/facemesh.min.js"></script>
+    <meta charset="utf-8">
+    <title>Browser inference demo</title>
 </head>
 <body>
-	<h1>Edge Impulse Motion Model Deployment</h1>
-	<canvas id="canvas" width="640" height="480"></canvas>
-	<div id="output"></div>
-	<script>
-		async function setupCamera() {
-			if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-				throw new Error('Browser API navigator.mediaDevices.getUserMedia not available');
-			}
-
-			const video = document.createElement('video');
-			video.width = 640;
-			video.height = 480;
-			video.autoplay = true;
-			video.playsinline = true;
-
-			const stream = await navigator.mediaDevices.getUserMedia({
-				audio: false,
-				video: {
-					facingMode: 'user',
-					width: 640,
-					height: 480,
-				},
-			});
-			video.srcObject = stream;
-
-			return new Promise(resolve => {
-				video.onloadedmetadata = () => {
-					resolve(video);
-				};
-			});
-		}
-
-		async function main() {
-			const canvas = document.getElementById('canvas');
-			const output = document.getElementById('output');
-
-			const video = await setupCamera();
-			canvas.width = video.width;
-			canvas.height = video.height;
-
-			const knn = new knnClassifier.KNNClassifier();
-			const mobileNet = await mobilenet.load();
-			const motionDetector = await motionDetection.load();
-			const handPose = await handpose.load();
-			const faceMesh = await facemesh.load();
-
-			async function classify() {
-				const image = tf.browser.fromPixels(video);
-				const embeddings = mobileNet.infer(image, true);
-				const prediction = await knn.predictClass(embeddings);
-
-				const isMoving = motionDetector.isMoving(image);
-				const hands = await handPose.estimateHands(video);
-				const faces = await faceMesh.estimateFaces(video);
-
-				output.innerHTML = `
-					<p>Prediction: ${prediction.label}</p>
-					<p>Is Moving: ${isMoving}</p>
-					<p>Number of Hands: ${hands.length}</p>
-					<p>Number of Faces: ${faces.length}</p>
-				`;
-
-				requestAnimationFrame(classify);
-			}
-
-			await knn.setClassifierDataset(classifierDataset);
-			requestAnimationFrame(classify);
-		}
-
-		main();
-	</script>
+    <script src="edge-impulse-standalone.js"></script>
+    <script src="run-impulse.js"></script>
+    <script>
+        (async () => {
+            var classifier = new EdgeImpulseClassifier();
+            await classifier.init();
+            console.log('results', classifier.classify([
+                // YOUR FEATURES HERE
+                -19.8800, -0.6900, 8.2300, -17.6600, -1.1300, 5.9700, ...
+            ]));
+        })();
+    </script>
 </body>
 </html>
-   
   
