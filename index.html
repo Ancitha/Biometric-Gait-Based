@@ -1,23 +1,435 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>Browser inference demo</title>
-</head>
+
+
 <body>
-    <script src="edge-impulse-standalone.js"></script>
-    <script src="run-impulse.js"></script>
-    <script>
-        (async () => {
-            var classifier = new EdgeImpulseClassifier();
-            await classifier.init();
-            console.log('results', classifier.classify([
-                // YOUR FEATURES HERE
-                  0.3369, 0.5020, -0.1319, 0.0427, -0.0056, -0.0469, 0.0576, 0.2834, -0.1311, 0.0246, 0.0071, -0.0157, 0.0526, 0.3479, 0.0559, 0.0350, -0.0267, -0.0266, 0.0551, 0.2839, 0.0927, 0.0350, -0.0257, -0.0239, 0.0285, 0.2056, 0.1835, 0.0387, -0.0240, -0.0296, 0.2079, 0.1656, 0.1749, 0.0383, -0.0061, -0.0302, 0.2420, 0.1501, 0.1855, 0.0403, 0.0061, -0.0281, 0.1649, 0.1955, 0.1775, 0.0377, 0.0300, -0.0219, 0.0141, 0.2507, 0.1254, 0.0236, 0.0348, -0.0121, 0.0094, 0.2411, 0.1115, 0.0205, 0.0290, -0.0137, -0.0098, 0.2310, 0.0986, 0.0191, 0.0147, -0.0193, 0.0450, 0.2357, 0.0839, 0.0175, -0.0067, -0.0245, 0.0487, 0.2383, 0.0802, 0.0169, -0.0055, -0.0231, 0.0482, 0.2386, 0.0643, 0.0157, 0.0038, -0.0181, 0.0283, 0.2356, 0.0408, 0.0139, 0.0213, -0.0145, 0.0304, 0.2344, 0.0288, 0.0139, 0.0220, -0.0151, 0.0273, 0.2393, 0.0397, 0.0140, 0.0216, -0.0161, 0.0184, 0.2374, 0.0432, 0.0151, 0.0201, -0.0157, 0.0170, 0.2139, -0.0085, 0.0137, 0.0192, -0.0152, 0.0433, 0.5338, 0.1657, 0.0173, 0.0169, -0.0200, 0.0481, 0.2105, 0.0664, 0.0114, -0.0015, -0.0180, -0.0241, 0.1839, -0.0164, 0.0087, 0.0084, -0.0231, 0.0003, 0.2531, 0.0533, 0.0179, 0.0033, -0.0262, -0.0088, 0.2596, 0.0344, 0.0170, 0.0041, -0.0260, -0.0161, 0.2564, 0.0377, 0.0187, 0.0074, -0.0269, -0.0189, 0.2732, 0.0163, 0.0197, 0.0092, -0.0296, -0.0216, 0.2793, 0.0176, 0.0207, 0.0110, -0.0311, -0.0234, 0.2822, 0.0139, 0.0212, 0.0154, -0.0338, -0.0116, 0.3119, 0.0153, 0.0250, 0.0278, -0.0401, -0.0293, 0.3347, 0.0092, 0.0255, 0.0306, -0.0414, -0.0609, 0.3839, -0.0469, 0.0283, 0.0346, -0.0439, -0.0466, 0.3904, -0.1396, 0.0398, 0.0410, -0.0443, -0.0391, 0.3956, -0.1233, 0.0431, 0.0444, -0.0432, 0.0736, 0.3861, 0.0196, 0.0446, 0.0503, -0.0367, 0.0569, 0.3193, 0.1871, 0.0294, 0.0333, -0.0150, 0.2414, 0.2879, 0.1604, 0.0187, 0.0352, -0.0049, 0.1352, 0.2421, 0.2056, 0.0134, 0.0065, -0.0096, 0.2744, 0.1644, 0.1646, 0.0008, 0.0002, -0.0017, 0.2479, 0.1762, 0.1651, 0.0060, 0.0105, 0.0103, 0.2012, 0.1378, 0.1542, -0.0084, 0.0143, 0.0276, 0.1897, 0.1158, 0.1337, -0.0120, -0.0018, 0.0494, 0.1899, 0.1046, 0.1152, -0.0197, -0.0069, 0.0605, 0.1896, 0.0924, 0.1068, -0.0322, -0.0193, 0.0683, 0.1906, 0.0690, 0.1025, -0.0414, -0.0250, 0.0809, 0.1844, 0.0612, 0.1003, -0.0437, -0.0265, 0.0836, 0.1777, 0.0583, 0.1060, -0.0482, -0.0298, 0.0867, 0.1599, 0.0484, 0.1012, -0.0587, -0.0398, 0.0890, 0.1484, 0.0486, 0.1011, -0.0627, -0.0435, 0.0895, 0.1440, 0.0653, 0.1017, -0.0704, -0.0493, 0.0924, 0.1586, 0.1687, 0.0709, -0.0823, -0.0468, 0.0992, 0.1311, 0.2078, 0.0619, -0.0861, -0.0453, 0.0982, 0.0224, 0.2570, 0.0536, -0.0887, -0.0441, 0.0940, -0.0450, 0.2300, -0.0145, -0.0781, -0.0572, 0.0716, -0.0955, 0.2071, -0.0690, -0.0688, -0.0626, 0.0614, -0.1635, 0.2262, -0.1647, -0.0265, -0.0620, 0.0253, -0.1310, 0.1797, -0.0914, 0.0141, -0.0321, -0.0007, -0.0830, 0.1953, 0.0009, 0.0357, -0.0166, -0.0205, 0.1788, 0.1552, 0.1895, 0.0400, -0.0316, -0.0327, 0.0743, 0.2184, 0.1777, 0.0321, 0.0192, -0.0240, 0.0583, 0.2592, 0.1882, 0.0321, 0.0172, -0.0232, 0.0428, 0.2661, 0.1323, 0.0258, 0.0125, -0.0158, 0.0313, 0.2290, 0.1041, 0.0205, 0.0110, -0.0170, 0.0260, 0.2343, 0.0967, 0.0189, 0.0072, -0.0179, 0.0587, 0.2431, 0.0886, 0.0178, 0.0005, -0.0199, 0.0722, 0.2282, 0.0673, 0.0154, 0.0030, -0.0189, 0.0733, 0.2328, 0.0693, 0.0154, 0.0055, -0.0179, 0.0539, 0.2368, 0.0657, 0.0135, 0.0127, -0.0151, 0.0237, 0.2368, 0.0159, 0.0134, 0.0217, -0.0128, 0.0195, 0.2426, 0.0037, 0.0139, 0.0230, -0.0125, 0.0157, 0.2387, 0.0110, 0.0143, 0.0254, -0.0114, -0.0284, 0.2034, -0.0034, 0.0172, 0.0211, -0.0133, 0.0711, 0.3083, 0.1607, 0.0162, 0.0193, -0.0148, -0.0091, 0.1882, -0.0013, 0.0188, 0.0146, -0.0167, 0.0328, 0.2833, -0.0415, 0.0351, -0.0071, -0.0229, -0.1597, 0.3012, 0.2755, 0.0450, -0.0041, -0.0273, 0.0243, 0.2510, -0.0099, -0.0106, 0.0089, -0.0205, -0.0304, 0.2607, -0.0018, 0.0128, 0.0054, -0.0244, -0.0235, 0.2328, -0.0191, 0.0154, 0.0059, -0.0262, -0.0267, 0.2780, 0.0127, 0.0228, 0.0117, -0.0291, -0.0097, 0.2979, 0.0196, 0.0236, 0.0228, -0.0331, -0.0002, 0.3061, 0.0243, 0.0239, 0.0253, -0.0342, -0.0048, 0.3289, 0.0195, 0.0249, 0.0320, -0.0367, -0.1109, 0.3843, -0.0584, 0.0266, 0.0429, -0.0418, -0.1106, 0.3779, -0.0797, 0.0297, 0.0455, -0.0441, -0.0667, 0.3667, -0.1266, 0.0359, 0.0452, -0.0466, -0.0193, 0.3287, 0.1248, 0.0448, 0.0494, -0.0347, 0.2039, 0.2203, 0.1649, 0.0126, 0.0081, -0.0061, 0.2201, 0.2492, 0.1864, 0.0132, 0.0024, -0.0022, 0.3066, 0.1913, 0.1544, 0.0020, 0.0034, 0.0038, 0.2465, 0.1643, 0.1482, 0.0054, 0.0202, 0.0169, 0.2208, 0.1430, 0.1436, -0.0001, 0.0193, 0.0237, 0.1936, 0.1165, 0.1311, -0.0039, 0.0092, 0.0360, 0.1861, 0.1138, 0.1067, -0.0156, -0.0129, 0.0599, 0.1815, 0.1136, 0.1051, -0.0197, -0.0167, 0.0641, 0.1870, 0.1053, 0.0995, -0.0288, -0.0233, 0.0709, 0.1844, 0.0779, 0.1039, -0.0407, -0.0313, 0.0818, 0.1819, 0.0745, 0.1029, -0.0426, -0.0327, 0.0830, 0.1588, 0.0648, 0.0950, -0.0482, -0.0380, 0.0852, 0.1569, 0.0593, 0.0867, -0.0643, -0.0527, 0.0927, 0.1490, 0.0752, 0.0930, -0.0673, -0.0530, 0.0948
-            ]));
-        })();
-    </script>
+  <div id="main">
+
+  
+<canvas id="myGrowCanvas" style="position:relative; left:0px; top:0px; width:3000px; height:2000px; " ></canvas> <br>  
+    
+<table border=1 style="position:absolute; left:800px; top:0px;  ">
+<tr><td>
+  
+Version 0.9.19 <br>
+  
+  
+<div id="description">
+        <div id="description-title" style="font-size:30px">Demo Edge Impulse WASM</div>
+      
+      
+      
+      
+        Frequency ms <input type=text id="myText01" value=130 onChange="{
+             myFrequencyMs = this.value
+             clearInterval(myTimer01)
+            myTimer01 = setInterval(myPictureNow, myFrequencyMs);
+          }"><br>
+      (square) width/height: <input type=text value="96" size=5 id="myWidthHeight" READONLY>  <br>    
+
+      
+        <div id="myDiv01" style="font-size:30px">...</div>
+        Stop Data Collection: <input type=checkbox id="myCheckbox01"><br>
+        Stop All Sounds <input type=checkbox id="myCheckbox02sounds" ><br>
+        Stop 0 (First) label sound: <input type=checkbox id="myCheckbox03lable0" checked=true><br>
+        <input type=button value="Width -" onclick="{
+           document.getElementById('myGrowCanvas').style.width = parseInt(document.getElementById('myGrowCanvas').style.width) - 50                                                                                
+        }"><input type=button value="Width +" onclick="{
+           document.getElementById('myGrowCanvas').style.width = parseInt(document.getElementById('myGrowCanvas').style.width) + 50         
+        }">    
+        <input type=button value="Height -" onclick="{
+           document.getElementById('myGrowCanvas').style.height = parseInt(document.getElementById('myGrowCanvas').style.height) - 50                                                                              
+        }"><input type=button value="Height +" onclick="{
+           document.getElementById('myGrowCanvas').style.height = parseInt(document.getElementById('myGrowCanvas').style.height) + 50          
+        }">   
+  
+        <br>
+        Camera: <select id="mySelect" onChange="setupPage()"><option  value="user">Front Camera<option selected="selected" value="environment">Rear Camera</select><br>
+        Default is not mirrored:  see canvas: scaleX(-1);  transform: scaleX(-1);<br>
+        Default GRAYSCALE, Check to use Color <input type=checkbox id="myCheckboxColor"><br><br>
+      
+       <textarea id="myTextArea01" style="display:none; " rows=10 cols=70>...</textarea> <br> <br> <br>
+  
+  </td></tr></table>
+    
+        
+
+      
+      
+      
+    <video id="video" playsinline="" style="display:none; -webkit-transform: scaleX(-1); transform: scaleX(-1); width: auto; height: auto;"></video>
+      
+    <canvas id="myOnTopOutput" style="display:none; background-color:white; border:black 3px solid;" ></canvas>  <!--  position:absolute; top:0; left:0;   -->  
+    
+    <canvas id="output" style="display:none; " ></canvas>  
+    
+    <canvas id="myColorCanvas" style="display:none; " ></canvas>   <br>
+  
+    </div>
+      
+
 </body>
-</html>
-              
+
+ <script src="edge-impulse-standalone.js"></script>
+
+<!-- Link to short internet sounds, load your own sound if uploaded to the same folder with the below code. .wav, .a4u, mp3 sound files should work -->
+<!--
+    <audio preload="auto" id="mySound8" src="mySound01.mp3"></audio>
+ -->
+
+
+    <audio preload="auto" id="mySound0" src="https://raw.githubusercontent.com/wesbos/JavaScript30/master/01%20-%20JavaScript%20Drum%20Kit/sounds/clap.wav"></audio>
+    <audio preload="auto" id="mySound1" src="https://raw.githubusercontent.com/wesbos/JavaScript30/master/01%20-%20JavaScript%20Drum%20Kit/sounds/boom.wav"></audio>
+    <audio preload="auto" id="mySound2" src="https://raw.githubusercontent.com/wesbos/JavaScript30/master/01%20-%20JavaScript%20Drum%20Kit/sounds/kick.wav"></audio>
+    <audio preload="auto" id="mySound3" src="https://raw.githubusercontent.com/wesbos/JavaScript30/master/01%20-%20JavaScript%20Drum%20Kit/sounds/openhat.wav"></audio>
+    <audio preload="auto" id="mySound4" src="https://raw.githubusercontent.com/wesbos/JavaScript30/master/01%20-%20JavaScript%20Drum%20Kit/sounds/ride.wav"></audio>
+    <audio preload="auto" id="mySound5" src="https://raw.githubusercontent.com/wesbos/JavaScript30/master/01%20-%20JavaScript%20Drum%20Kit/sounds/snare.wav"></audio>
+    <audio preload="auto" id="mySound6" src="https://raw.githubusercontent.com/wesbos/JavaScript30/master/01%20-%20JavaScript%20Drum%20Kit/sounds/tom.wav"></audio>
+    <audio preload="auto" id="mySound7" src="https://raw.githubusercontent.com/wesbos/JavaScript30/master/01%20-%20JavaScript%20Drum%20Kit/sounds/tink.wav"></audio>
+    <audio preload="auto" id="mySound8" src="https://raw.githubusercontent.com/wesbos/JavaScript30/master/01%20-%20JavaScript%20Drum%20Kit/sounds/hihat.wav"></audio>
+
+
+
+
+
+<script> 
+
+let myTimer01 = 0;
+let myOutputString = ''
+let myFrequencyMs = document.getElementById('myText01').value
+let myWidthHeightSquare = document.getElementById('myWidthHeight').value
+  
+  
+  function RGBAToHex(r,g,b,a) {
+  r = r.toString(16);
+  g = g.toString(16);
+  b = b.toString(16);
+
+  if (r.length == 1)
+    r = "0" + r;
+  if (g.length == 1)
+    g = "0" + g;
+  if (b.length == 1)
+    b = "0" + b;
+
+ // return "#" + r + g + b + ", " ;
+  return "0x" + r + g + b + ", " ;
+       
+}
+  
+  
+  
+  
+const setupCamera = async function(){   
+  
+  video = document.getElementById('video');
+  
+  // stop it if running
+  video.pause()
+  video.srcObject = null
+  
+  const stream = await navigator.mediaDevices.getUserMedia({
+    'audio': false,
+    'video': { facingMode: document.getElementById('mySelect').value },
+  });
+  video.srcObject = stream;
+
+  return new Promise((resolve) => {
+    video.onloadedmetadata = () => {
+      resolve(video);
+    };
+  });
+}
+
+ 
+
+  
+ const renderPrediction = async function(){   
+
+   document.ctx.clearRect(0, 0, document.ctx.canvas.width, document.ctx.canvas.width);
+ 
+ 
+   document.ctx.drawImage(video, 0, 0, videoWidth, videoHeight);
+   ctxColor.drawImage(video, 0, 0, videoWidth, videoHeight);
+  
+  
+  let imgData = document.ctx.getImageData(0, 0, document.ctx.canvas.width, document.ctx.canvas.height);
+  let pixels = imgData.data;
+  for (var i = 0; i < pixels.length; i += 4) {
+
+    let lightness = parseInt((pixels[i] + pixels[i + 1] + pixels[i + 2]) / 3);
+
+    pixels[i] = lightness;
+    pixels[i + 1] = lightness;
+    pixels[i + 2] = lightness;
+  }
+   
+  document.ctx.scale(-1, 1);  // mirror image
+  document.ctx.putImageData(imgData, 0, 0);
+       
+  requestAnimationFrame(renderPrediction);
+     
+   
+}; 
+  
+  
+  
+const myPictureNow  = async function(){    
+  
+   var classifier = new EdgeImpulseClassifier();
+   await classifier.init(); 
+    
+   let props = classifier.getProperties();
+    
+   myWidthHeightSquare = props.input_width 
+   document.getElementById('myWidthHeight').value = props.input_width
+    
+
+//  console.log(props.input_width)    //  props.sensor   props.frequency  props.frame_sample_count   props.input_width   props.input_height
+   
+    
+  ctxOnTop.clearRect(0, 0, canvasOnTop.width, canvasOnTop.height); 
+    
+  let myX = (640-myWidthHeightSquare)/2
+  let myY = (480-myWidthHeightSquare)/2
+  let ImageData2;
+  
+    if (document.getElementById('myCheckboxColor').checked ) {
+      ImageData2 =  ctxColor.getImageData(myX, myY, myWidthHeightSquare, myWidthHeightSquare);  // grab COLOR image x,y,width,height
+    }   else  {
+  
+    
+      ImageData2 = document.ctx.getImageData(myX, myY, myWidthHeightSquare, myWidthHeightSquare);  // grab GRAYSCALE  image x,y,width,height
+      
+    }
+
+  ctxOnTop.putImageData(ImageData2, myX,  myY   );  //put image near center
+    
+  ctxGrow.putImageData(ImageData2,  0, 0);  // try to grow the image 
+    
+    
+ // alert(RGBAToHex(ImageData2.data[0], ImageData2.data[1], ImageData2.data[2], ImageData2.data[3]) )  
+  let pixels2 = ImageData2.data
+  myOutputString = ''
+     
+   
+   if (document.getElementById('myCheckbox01').checked ) {
+     //console.log('checked')
+     //console.log(document.getElementById('myCheckbox01').checked)
+     myOutputString = document.getElementById('myTextArea01').value  
+     document.getElementById('myTextArea01').style.display = 'inline'  
+   
+   } else { 
+     document.getElementById('myTextArea01').style.display = 'none' 
+    
+     for (var i = 0; i < pixels2.length; i += 4) {
+        myOutputString += RGBAToHex(ImageData2.data[i], ImageData2.data[i+1], ImageData2.data[i+2], ImageData2.data[i+3])
+     }
+  
+      // console.log('myOutputString')
+      // console.log(myOutputString)
+      // document.getElementById('myTextArea01').value= JSON.stringify(myOutputString, 2, '\n')
+      // myOutputString = myOutputString.substring(1);  // remove first "
+      myOutputString = myOutputString.substring(0, myOutputString.length - 2);  // remove last ,"
+      document.getElementById('myTextArea01').value = myOutputString
+    }
+
+    
+     results = await classifier.classify( myOutputString.split(', ')   );      //, true  can set debug true auto shows in console
+    
+    
+  let myTemp = ''
+  myTemp =  '<table border=1  style="font-size:30px">'
+    
+  let myBestClassificationNumber = -1  
+  let myBestClassificationValue = 0.25   // lowest best allowable value 
+  for (let j = 0;  j < results.results.length; j++){  
+      if (results.results[j].value > myBestClassificationValue ){
+           myBestClassificationNumber = j;                      // find the biggest array value
+           myBestClassificationValue = results.results[j].value  
+        }
+  }
+    
+  
+  //////////////////////////////////////////// Where the magic happens //////////////////////////////////////////////////////////////////////////////
+  
+  
+  
+    
+  for (let i = 0;  i < results.results.length; i++){  
+    if (myBestClassificationNumber == i){   // check if this is the best one
+        if (! document.getElementById('myCheckbox02sounds').checked){
+          
+           if (! document.getElementById('myCheckbox03lable0').checked){         
+              if (i==0) { document.getElementById('mySound0').currentTime = 0; document.getElementById('mySound0').play() }
+           }
+           if (i==1) { document.getElementById('mySound1').currentTime = 0; document.getElementById('mySound1').play() }
+           if (i==2) { document.getElementById('mySound2').currentTime = 0; document.getElementById('mySound2').play() }
+           if (i==3) { document.getElementById('mySound3').currentTime = 0; document.getElementById('mySound3').play() }
+           if (i==4) { document.getElementById('mySound4').currentTime = 0; document.getElementById('mySound4').play() }
+           if (i==5) { document.getElementById('mySound5').currentTime = 0; document.getElementById('mySound5').play() }
+           if (i==6) { document.getElementById('mySound6').currentTime = 0; document.getElementById('mySound6').play() } 
+           if (i==7) { document.getElementById('mySound7').currentTime = 0; document.getElementById('mySound7').play() }
+           if (i==8) { document.getElementById('mySound8').currentTime = 0; document.getElementById('mySound8').play() }
+          }   
+      
+           myTemp += '<tr><td>'+ results.results[i].label + '</td><td><font style=\'color:yellow; background-color:blue;\'>' + results.results[i].value.toFixed(3) +'</font></td></tr>'            
+        } else {
+           myTemp += '<tr><td>'+ results.results[i].label + '</td><td>' + results.results[i].value.toFixed(3) +'</td></tr>'
+        }
+   }  
+       
+  myTemp += '</table>'   
+  //console.log(results) 
+  
+    
+    
+  document.getElementById('myDiv01').innerHTML = ' results.anomaly: '+ results.anomaly + '<br>' +  myTemp
+}
+  
+  
+  
+  
+const setupPage = async function(){   
+
+  await setupCamera();
+  video.play();
+
+  videoWidth = video.videoWidth;
+  videoHeight = video.videoHeight;
+  console.log('videoWidth')
+  console.log(videoWidth)
+  console.log('videoHeight')
+  console.log(videoHeight)
+  
+  video.width = videoWidth;
+  video.height = videoHeight;
+
+
+  canvasOnTop = document.getElementById('myOnTopOutput');
+  canvasOnTop.width = videoWidth;
+  canvasOnTop.height = videoHeight;
+  ctxOnTop = canvasOnTop.getContext('2d'); 
+  
+  
+  
+  canvasColor = document.getElementById('myColorCanvas');
+  canvasColor.width = videoWidth;
+  canvasColor.height = videoHeight;
+  ctxColor = canvasColor.getContext('2d'); 
+  
+    
+  canvasGrow = document.getElementById('myGrowCanvas');
+  canvasGrow.width = videoWidth;
+  canvasGrow.height = videoHeight;
+  ctxGrow = canvasGrow.getContext('2d'); 
+  
+  canvas = document.getElementById('output');
+  canvas.width = videoWidth;
+  canvas.height = videoHeight;
+  document.ctx = canvas.getContext('2d'); 
+  
+ // setInterval(function(){ alert("Hello"); }, 3000);
+  myTimer01 = setInterval(myPictureNow, myFrequencyMs);
+ // myTimer01 = setInterval('myPictureNow', 3000); 
+  renderPrediction();
+  
+  
+};
+
+  
+// main program!
+setupPage();
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  
+ // From the old run_impulse.js file 
+  
+// Classifier module
+let classifierInitialized = false;
+Module.onRuntimeInitialized = function() {
+    classifierInitialized = true;
+};
+
+class EdgeImpulseClassifier {
+    _initialized = false;
+ 
+  
+  // https://forum.edgeimpulse.com/t/wasm-sound-acceleration-camera-demos/1611/7
+      getProperties() {
+        return Module.get_properties();
+    }
+
+    init() {
+        if (classifierInitialized === true) return Promise.resolve();
+
+        return new Promise((resolve) => {
+            Module.onRuntimeInitialized = () => {
+                resolve();
+                classifierInitialized = true;
+            };
+        });
+    }
+
+    classify(rawData, debug = false) {
+        if (!classifierInitialized) throw new Error('Module is not initialized');
+
+        const obj = this._arrayToHeap(rawData);
+        let ret = Module.run_classifier(obj.buffer.byteOffset, rawData.length, debug);
+        Module._free(obj.ptr);
+
+        if (ret.result !== 0) {
+            throw new Error('Classification failed (err code: ' + ret.result + ')');
+        }
+
+
+        let jsResult = {
+            anomaly: ret.anomaly,
+            results: []
+        };
+
+        // if ret.size is a function, then this is a new module. Use this API call to prevent leaks.
+        // the old API (calling via ret.classification) is still there for backwards compatibility, but leaks some memory
+        if (typeof ret.size === 'function') {
+            for (let cx = 0; cx < ret.size(); cx++) {
+                let c = ret.get(cx);
+                jsResult.results.push({ label: c.label, value: c.value });
+                c.delete();
+            }
+        }
+        else {
+            for (let cx = 0; cx < ret.classification.size(); cx++) {
+                let c = ret.classification.get(cx);
+                jsResult.results.push({ label: c.label, value: c.value });
+                c.delete();
+            }
+        }
+
+        ret.delete();
+
+        return jsResult;
+    }
+
+    _arrayToHeap(data) {
+        let typedArray = new Float32Array(data);
+        let numBytes = typedArray.length * typedArray.BYTES_PER_ELEMENT;
+        let ptr = Module._malloc(numBytes);
+        let heapBytes = new Uint8Array(Module.HEAPU8.buffer, ptr, numBytes);
+        heapBytes.set(new Uint8Array(typedArray.buffer));
+        return { ptr: ptr, buffer: heapBytes };
+    }
+}
+  
+</script>
            
